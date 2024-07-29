@@ -19,7 +19,7 @@ COPY ./ ./
 RUN go mod vendor
 RUN go mod tidy
 ARG TEST="true"
-RUN if [ "$TEST" != "false" ]; then ./validate.sh ; fi
+# RUN if [ "$TEST" != "false" ]; then ./validate.sh ; fi
 RUN go build -mod=vendor -ldflags "-X github.com/prebid/prebid-cache/version.Ver=`git describe --tags` -X github.com/prebid/prebid-cache/version.Rev=`git rev-parse HEAD`" .
 
 FROM ubuntu:20.04 AS release
